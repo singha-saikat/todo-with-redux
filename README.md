@@ -93,3 +93,40 @@ Copy code
 
 📞 Contact
 For any questions or feedback, please open an issue or contact me at sachinsingha7899@gmail.com
+
+
+
+## Todo App with Redux
+A responsive Todo application built with React and Redux Toolkit, designed for learning and practicing state management, data fetching, and UI development.
+
+✨ Features
+- Add Tasks: Quickly add new tasks with titles, descriptions, and priorities.
+- Edit Tasks: Update the details of existing tasks.
+- Delete Tasks: Remove completed or unnecessary tasks.
+- Toggle Completion: Mark tasks as completed or revert to pending.
+- Filter by Priority: View tasks based on priority levels (high, medium, low).
+- Responsive Design: Optimized for both desktop and mobile devices.
+
+🚀 Technologies Used
+- React: JavaScript library for building user interfaces.
+- Redux Toolkit: Efficient Redux development with minimal boilerplate.
+- RTK Query: Powerful data fetching and caching solution.
+- TypeScript: Typed JavaScript at any scale.
+- Tailwind CSS: Utility-first CSS framework for rapid UI development.
+
+## Installation
+
+Install my-project with npm
+
+```bash
+git clone https://github.com/singha-saikat/todo-with-redux.git
+cd todo-with-redux
+Install dependencies:
+npm install
+Start the application:
+npm start
+Open your browser:
+
+Navigate to http://localhost:3000 to view the app.
+```
+    
