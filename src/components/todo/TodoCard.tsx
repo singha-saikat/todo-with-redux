@@ -1,18 +1,29 @@
 import { useAppDispatch } from "@/redux/hooks";
-import { findCompleteOrNot, removeTodo } from "@/redux/features/todoSlice";
+import { useDeleteTodoMutation } from "@/redux/features/apiSlice"; 
+import { findCompleteOrNot } from "@/redux/features/todoSlice";
 
 type TTodosCardProps = {
   id: string;
   title: string;
   description: string;
   isCompleted: boolean | undefined;
+  priority: string;
 };
 
 const TodoCard = ({ id, title, description, isCompleted }: TTodosCardProps) => {
   const dispatch = useAppDispatch();
+  const [deleteTodo, { isLoading: isDeleting }] = useDeleteTodoMutation(); 
+
+  const handleDelete = async (id:string) => {
+    try {
+      await deleteTodo(id).unwrap(); 
+    } catch (error) {
+      console.error('Failed to delete the todo:', error);
+    }
+  };
 
   return (
-    <div className='bg-white rounded-md flex items-center p-3 border mb-2 shadow-sm '>
+    <div className='bg-white rounded-md flex items-center p-3 border mb-2 shadow-sm'>
       <input
         type="checkbox"
         name="checkbox"
@@ -34,9 +45,10 @@ const TodoCard = ({ id, title, description, isCompleted }: TTodosCardProps) => {
         </span>
         <div className="border-l border-gray-300 h-6"></div>
         <button
-          onClick={() => dispatch(removeTodo(id))}
+          onClick={() => handleDelete(id)}
           className="text-red-500 hover:text-red-700 focus:outline-none"
           aria-label="Delete Todo"
+          disabled={isDeleting} 
         >
           <svg
             className="w-5 h-5"

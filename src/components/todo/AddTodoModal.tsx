@@ -12,29 +12,38 @@ import { Button } from "../ui/button";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "../ui/input";
 import { FormEvent, useState } from "react";
-import { useAppDispatch } from "@/redux/hooks";
-import { addTodo } from "@/redux/features/todoSlice";
-import { v4 as uuidv4 } from "@lukeed/uuid";
+// import { useAppDispatch } from "@/redux/hooks";
+// import { addTodo } from "@/redux/features/todoSlice";
+import { useAddTodoMutation } from "@/redux/features/apiSlice";
 
 const AddTodoModal = () => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("medium"); 
-  const dispatch = useAppDispatch();
+  const [priority, setPriority] = useState("medium");
+  // For localy use 
+  // const dispatch = useAppDispatch();
 
+  // for server use 
+  // [ actualFunctionForPost,{data,isLoading,isError}]
+  const [addTodo,{data,isError,isLoading,isSuccess}] = useAddTodoMutation();
+  console.log(data,isError,isLoading,isSuccess);
   const handleTaskSubmit = (e: FormEvent) => {
     e.preventDefault();
     const taskDetails = {
-      id: uuidv4(),
       title: task,
       description: description,
       priority: priority,
       isCompleted: false, 
     };
-    dispatch(addTodo(taskDetails));
-    setTask("");
-    setDescription("");
-    setPriority("medium");
+    // For localy use 
+    // dispatch(addTodo(taskDetails));
+
+    // for server post call 
+    addTodo(taskDetails);
+    console.log(taskDetails);
+    // setTask("");
+    // setDescription("");
+    // setPriority("medium");
   };
 
   return (
